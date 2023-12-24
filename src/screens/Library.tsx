@@ -5,42 +5,31 @@
  * @format
  */
 
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import {
   Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
-  Switch,
   Text,
   useColorScheme,
   View,
 } from 'react-native';
 
-import { useSettings } from '../store';
-
 import { useStyle } from '../style'
 
 function App(): React.JSX.Element {
 
-  const { isDark, updateSettings } = useSettings()
-
-  const { s, sc, Colors } = useStyle()
-
-  const toggleTheme = () => {
-    updateSettings({ isDark: !isDark })
-  }
+  const { s, sc } = useStyle()
 
   return (
     <SafeAreaView style={[s.container, s.centered]}>
-
+      
       <View style={sc.card}>
-        <Text style={s.titleText}>Settings</Text>
+        <Text style={s.titleText}>Library</Text>
         <Text style={s.subTitleText}>Sub title</Text>
-        <Switch onValueChange={toggleTheme} value={isDark} />
 
-        <Text style={s.normalText}>{isDark ? '深色' : '浅色'}</Text>
       </View>
 
     </SafeAreaView>
