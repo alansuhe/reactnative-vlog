@@ -1,6 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native";
 import { useSettings } from "./store";
-import { DarkTheme, DefaultTheme } from "@react-navigation/native";
 
 // --- 将来考虑响应式
 export const Sizes = {

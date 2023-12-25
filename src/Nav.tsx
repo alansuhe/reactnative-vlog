@@ -7,7 +7,7 @@
 
 import React from 'react';
 
-import { useStyle } from './Style'
+import { useStyle } from './style'
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -23,7 +23,6 @@ function App(): React.JSX.Element {
 
   const NavTheme = {
     ...navTheme,
-    // dark: isDark,
     colors: {
       ...navTheme.colors,
       ...NavColors
