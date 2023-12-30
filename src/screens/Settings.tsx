@@ -21,8 +21,9 @@ import {
 import { useSettings } from '../store';
 
 import { useStyle } from '../style'
+import { DrawerContentComponentProps } from '@react-navigation/drawer';
 
-function App(): React.JSX.Element {
+function App(props: DrawerContentComponentProps) {
 
   const { isDark, updateSettings } = useSettings()
 

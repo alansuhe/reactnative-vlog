@@ -14,6 +14,18 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/Home'
 import SettingsScreen from './screens/Settings'
 import LibraryScreen from './screens/Library'
+import BookScreen from './screens/Book'
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+export type NavParamListType = {
+  Home: any,
+  Library: any,
+  Settings: any,
+  Book: {
+    book?: any
+  }
+}
 
 function App(): React.JSX.Element {
 
@@ -29,15 +41,44 @@ function App(): React.JSX.Element {
     }
   }
 
-  const Tab = createBottomTabNavigator();
+  const LibraryNav = createNativeStackNavigator()
+  function LibraryStack() {
+    return (
+      <LibraryNav.Navigator screenOptions={{
+      }}>
+        <LibraryNav.Screen name="Library" component={LibraryScreen} />
+        <LibraryNav.Screen name="Book" component={BookScreen} />
+      </LibraryNav.Navigator>
+    )
 
+  }
+
+  const Tab = createBottomTabNavigator();
+  const BottomTabNavigator = () => {
+    return (
+      <Tab.Navigator initialRouteName='Home'>
+        <Tab.Screen name="LibraryStack" component={LibraryStack} options={{ headerShown: false}} />
+        <Tab.Screen name="Home" component={HomeScreen} />
+        {/* <Tab.Screen name="Settings" component={SettingsScreen} /> */}
+      </Tab.Navigator>
+    )
+  }
+
+  const Drawer = createDrawerNavigator();
   return (
     <NavigationContainer theme={NavTheme}>
-      <Tab.Navigator initialRouteName='Home'>
-        <Tab.Screen name="Library" component={LibraryScreen} />
-        <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
+      <Drawer.Navigator
+        // initialRouteName="tab"
+        drawerContent={(props) => <SettingsScreen {...props} />}
+        screenOptions={{
+          headerShown: false,
+          // title: 'vlog'
+        }}>
+        <Drawer.Screen
+          name={'Home'}
+          component={BottomTabNavigator}
+        />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }

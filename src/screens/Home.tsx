@@ -5,19 +5,34 @@
  * @format
  */
 
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import {
   Pressable,
   SafeAreaView,
   Text,
   View,
 } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { useStyle, cm, bcm, mcm, scm } from '../style'
+import { NavParamListType } from '../Nav';
+import { DrawerActions } from '@react-navigation/native';
 
-function App(): React.JSX.Element {
+function App({ route, navigation }: NativeStackScreenProps<NavParamListType, 'Home'>) {
 
   const { s, sc, Colors: { emphasis } } = useStyle()
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      // headerTransparent: false,
+      headerLeft: () =>
+        <Pressable onPress={() => {
+          navigation.dispatch(DrawerActions.openDrawer())
+        }}>
+          <Text style={s.titleText}>{'<'}</Text>
+        </Pressable>
+    })
+  }, [])
 
   return (
     <SafeAreaView style={[s.container, s.centered]}>
@@ -29,7 +44,7 @@ function App(): React.JSX.Element {
         <Text style={s.normalText}>normal blah .....</Text>
         <Text style={s.subText}>sub text</Text>
 
-        <View style={[s.row, { marginBottom: bcm * 2}]}>
+        <View style={[s.row, { marginBottom: bcm * 2 }]}>
           <Pressable style={sc.boxAct}>
             <Text style={s.normalText}>act</Text>
           </Pressable>
