@@ -20,6 +20,7 @@ import {
 import { useStyle } from '../style'
 import { NavParamListType } from '../Nav';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ParamListBase } from '@react-navigation/native';
 
 export const Books = [
   {title: 'book1', des: 'this is about ...'},

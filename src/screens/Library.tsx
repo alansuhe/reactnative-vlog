@@ -20,7 +20,7 @@ import {
 import { useStyle } from '../style'
 import { NavParamListType } from '../Nav';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { DrawerActions } from '@react-navigation/native';
+import { DrawerActions, ParamListBase } from '@react-navigation/native';
 
 export const Books = [
   {title: 'book1', des: 'this is about ...'},
@@ -28,7 +28,7 @@ export const Books = [
   {title: 'manga2', des: 'pretty nice ...'}
 ]
 
-function App({ route, navigation }: NativeStackScreenProps<NavParamListType, 'Library'>) {
+function App({ route, navigation }: NativeStackScreenProps<ParamListBase, 'Library'>) {
 
   const { s, sc } = useStyle()
 
@@ -53,8 +53,8 @@ function App({ route, navigation }: NativeStackScreenProps<NavParamListType, 'Li
       </View>
 
       {
-          Books.map( book => 
-          <View style={sc.card}>
+          Books.map( (book, i) => 
+          <View key={i} style={sc.card}>
             <Text style={s.titleText}>{book.title}</Text>
             <Text style={s.subText}>{book.des}</Text>
             <Pressable style={sc.boxLink} onPress={() => {

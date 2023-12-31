@@ -16,9 +16,9 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { useStyle, cm, bcm, mcm, scm } from '../style'
 import { NavParamListType } from '../Nav';
-import { DrawerActions } from '@react-navigation/native';
+import { DrawerActions, ParamListBase } from '@react-navigation/native';
 
-function App({ route, navigation }: NativeStackScreenProps<NavParamListType, 'Home'>) {
+function App({ route, navigation }: NativeStackScreenProps<ParamListBase, 'Home'>) {
 
   const { s, sc, Colors: { emphasis } } = useStyle()
 
@@ -29,7 +29,7 @@ function App({ route, navigation }: NativeStackScreenProps<NavParamListType, 'Ho
         <Pressable onPress={() => {
           navigation.dispatch(DrawerActions.openDrawer())
         }}>
-          <Text style={s.titleText}>{'<'}</Text>
+          <Text style={s.titleText}>{':'}</Text>
         </Pressable>
     })
   }, [])
@@ -45,11 +45,8 @@ function App({ route, navigation }: NativeStackScreenProps<NavParamListType, 'Ho
         <Text style={s.subText}>sub text</Text>
 
         <View style={[s.row, { marginBottom: bcm * 2 }]}>
-          <Pressable style={sc.boxAct}>
-            <Text style={s.normalText}>act</Text>
-          </Pressable>
-          <Pressable style={sc.boxLink}>
-            <Text style={s.normalText}>link</Text>
+          <Pressable style={sc.boxAct} onPress={()=> navigation.navigate('Pay')}>
+            <Text style={s.normalText}>open modal</Text>
           </Pressable>
         </View>
       </View>
