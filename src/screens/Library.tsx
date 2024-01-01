@@ -17,10 +17,11 @@ import {
   View,
 } from 'react-native';
 
-import { useStyle } from '../style'
+import { useStyle, cm, bcm } from '../style'
 import { NavParamListType } from '../Nav';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { DrawerActions, ParamListBase } from '@react-navigation/native';
+import VectorIcon from 'react-native-vector-icons/FontAwesome6';
 
 export const Books = [
   {title: 'book1', des: 'this is about ...'},
@@ -30,7 +31,7 @@ export const Books = [
 
 function App({ route, navigation }: NativeStackScreenProps<ParamListBase, 'Library'>) {
 
-  const { s, sc } = useStyle()
+  const { s, sc, Colors: { front, sub, act, link } } = useStyle()
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -60,6 +61,7 @@ function App({ route, navigation }: NativeStackScreenProps<ParamListBase, 'Libra
             <Pressable style={sc.boxLink} onPress={() => {
               navigation.navigate('Book', {book})
             }}>
+              <VectorIcon name='paper-plane' color={act} size={bcm} />
               <Text>more</Text>
             </Pressable>
           </View>)

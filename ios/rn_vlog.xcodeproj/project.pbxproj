@@ -30,6 +30,8 @@
 		00E356EE1AD99517003FC87E /* rn_vlogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rn_vlogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* rn_vlogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rn_vlogTests.m; sourceTree = "<group>"; };
+		0F7B31AA2B42DA1200CBAF4B /* FontAwesome6_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome6_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome6_Regular.ttf"; sourceTree = "<group>"; };
+		0F7B31AB2B42DA1200CBAF4B /* FontAwesome6_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome6_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome6_Solid.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* rn_vlog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rn_vlog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = rn_vlog/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = rn_vlog/AppDelegate.mm; sourceTree = "<group>"; };
@@ -83,9 +85,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0F7B31A92B42D9BA00CBAF4B /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0F7B31AA2B42DA1200CBAF4B /* FontAwesome6_Regular.ttf */,
+				0F7B31AB2B42DA1200CBAF4B /* FontAwesome6_Solid.ttf */,
+			);
+			name = fonts;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* rn_vlog */ = {
 			isa = PBXGroup;
 			children = (
+				0F7B31A92B42D9BA00CBAF4B /* fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,

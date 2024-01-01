@@ -18,6 +18,7 @@ import BookScreen from './screens/Book'
 import PayScreen from './screens/Pay'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import VectorIcon from 'react-native-vector-icons/FontAwesome6';
 
 export interface NavParamListType extends ParamListBase {
   Home: undefined
@@ -71,8 +72,12 @@ function App(): React.JSX.Element {
   const BottomTabNavigator = () => {
     return (
       <Tab.Navigator initialRouteName='HomeStack'>
-        <Tab.Screen name="LibraryStack" component={LibraryStack} options={{ headerShown: false}} />
-        <Tab.Screen name="HomeStack" component={HomeStack} options={{ headerShown: false}} />
+        <Tab.Screen name="LibraryStack" component={LibraryStack} 
+        options={{ headerShown: false, 
+        tabBarIcon: ({ color, size, focused })=><VectorIcon name='book' color={color} size={size} />}} />
+        <Tab.Screen name="HomeStack" component={HomeStack} 
+        options={{ headerShown: false, 
+          tabBarIcon: ({ color, size, focused })=><VectorIcon name='bowling-ball' color={color} size={size} />}} />
         {/* <Tab.Screen name="Settings" component={SettingsScreen} /> */}
       </Tab.Navigator>
     )
