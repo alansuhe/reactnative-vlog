@@ -14,7 +14,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/Home'
 import SettingsScreen from './screens/Settings'
 import LibraryScreen from './screens/Library'
-import BookScreen from './screens/Book'
+import MovieScreen from './screens/Movie'
 import PayScreen from './screens/Pay'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -24,8 +24,8 @@ export interface NavParamListType extends ParamListBase {
   Home: undefined
   Library: undefined
   Settings: undefined
-  Book: {
-    book?: any
+  Movie: {
+    movie?: any
   }
   Pay: undefined
 }
@@ -62,7 +62,7 @@ function App(): React.JSX.Element {
       <LibraryNav.Navigator screenOptions={{
       }}>
         <LibraryNav.Screen name="Library" component={LibraryScreen} />
-        <LibraryNav.Screen name="Book" component={BookScreen} />
+        <LibraryNav.Screen name="Movie" component={MovieScreen} />
       </LibraryNav.Navigator>
     )
 

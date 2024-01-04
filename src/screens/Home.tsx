@@ -15,7 +15,6 @@ import {
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { useStyle, cm, bcm, mcm, scm } from '../style'
-import { NavParamListType } from '../Nav';
 import { DrawerActions, ParamListBase } from '@react-navigation/native';
 
 function App({ route, navigation }: NativeStackScreenProps<ParamListBase, 'Home'>) {

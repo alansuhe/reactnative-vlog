@@ -37,3 +37,11 @@
 - 纯常量全大写
 
 - 可能变动的常量大写开头驼峰
+
+# tips
+
+## cache
+
+```
+yarn start --reset-cache
+```
