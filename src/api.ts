@@ -1,12 +1,23 @@
 // https://api.wmdb.tv/api/v1/top?type=Imdb&skip=0&limit=50&lang=Cn
+import { OMDB_BASE_URL, OMDB_API_KEY } from '@env'
 
-export const getMovies = async () => {
-    return fetch('https://api.wmdb.tv/api/v1/top?type=Imdb&skip=0&limit=50&lang=Cn', {
+const urlSearch = `${OMDB_BASE_URL}?apikey=${OMDB_API_KEY}&plot=full&s=love&y=2023`
+const urlGetMovie = `${OMDB_BASE_URL}?apikey=${OMDB_API_KEY}&plot=full&y=2023`
+
+export const searchMovies = async () => {
+    return fetch(urlSearch, {
         method: 'GET'
     })
-    .then(res => res.json())
-    .then(json => {
-        // console.log(json)
-        return(json)})
-    .catch(e => console.warn(e))
+        .then(res => res.json())
+        .then(json => json)
+        .catch(e => console.warn(e))
+}
+
+export const getMovie = async (id: string) => {
+    return fetch(urlGetMovie + '&i=' + id, {
+        method: 'GET'
+    })
+        .then(res => res.json())
+        .then(json => json)
+        .catch(e => console.warn(e))
 }

@@ -20,12 +20,11 @@ import {
   View,
 } from 'react-native';
 
-import { useStyle, cm, bcm } from '../style'
+import { useStyle, cm, bcm, scm } from '../style'
 import { NavParamListType } from '../Nav';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { DrawerActions, ParamListBase } from '@react-navigation/native';
-import VectorIcon from 'react-native-vector-icons/FontAwesome6';
-import { getMovies } from '../api';
+import { searchMovies } from '../api';
 import Animated, { SharedTransition, withSpring } from 'react-native-reanimated';
 
 // export const Books = [
@@ -36,18 +35,19 @@ import Animated, { SharedTransition, withSpring } from 'react-native-reanimated'
 
 function App({ route, navigation }: NativeStackScreenProps<ParamListBase, 'Library'>) {
 
-  const { s, sc, Colors: { front, sub, act, link } } = useStyle()
+  const { s, sc, Colors: { front, sub, act, link, mid } } = useStyle()
 
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(false)
 
   async function getMoviesFromCloud() {
     setLoading(true)
-    const mvs = await getMovies()
+    const mvs = await searchMovies()
     console.log('movies===>', mvs)
-    setMovies(mvs)
+    setMovies(mvs.Search)
     setLoading(false)
   }
+
   useEffect(() => {
     getMoviesFromCloud()
   }, [])
@@ -64,67 +64,50 @@ function App({ route, navigation }: NativeStackScreenProps<ParamListBase, 'Libra
     })
   }, [])
 
-  const renderItem = ({ item: movie }) =>
-    <View style={sc.card}>
-      <View style={s.row}>
-        <Pressable onPress={() => {
-          navigation.navigate('Movie', { movie })
-        }}>
+  const renderItem = ({ item: movie }: { item: any }) =>
+
+    <View style={{ flex: 1 }}>
+      <View style={[s.row, s.box, { padding: 0, marginBottom: cm, borderRadius: cm }]}>
+        <Pressable
+          onPress={() => {
+            navigation.navigate('Movie', { movie })
+          }}>
           <Animated.Image
-            source={{ uri: movie.data[0].poster }}
-            // resizeMode='cover'
-            style={{ width: cm * 6, height: cm * 8 }}
-            sharedTransitionTag={movie.id} />
+            source={{ uri: movie.Poster }}
+            style={{ width: cm * 6, height: cm * 8, borderTopLeftRadius: cm, borderBottomLeftRadius: cm }}
+            sharedTransitionTag={movie.imdbID} />
         </Pressable>
-        <View>
-          <Text style={s.titleText}>{movie.originalName}</Text>
-          <Text style={s.subText}>{movie.data[0].description}</Text>
+        <View style={{ flexShrink: 1, marginRight: cm }}>
+          <Text style={s.titleText}>{movie.Title}</Text>
+          <Text style={s.subText}>{movie.Year}</Text>
         </View>
       </View>
     </View>
 
-  const customTransition = SharedTransition.custom((values) => {
-    'worklet';
-    return {
-      height: withSpring(values.targetHeight),
-      width: withSpring(values.targetWidth),
-      originX: withSpring(values.targetOriginX),
-      originY: withSpring(values.targetOriginY),
-    };
-  });
+  // const customTransition = SharedTransition.custom((values) => {
+  //   'worklet';
+  //   return {
+  //     height: withSpring(values.targetHeight),
+  //     width: withSpring(values.targetWidth),
+  //     originX: withSpring(values.targetOriginX),
+  //     originY: withSpring(values.targetOriginY),
+  //   };
+  // });
 
   return (
     <SafeAreaView style={[s.container, s.centered]}>
-
-      <View style={sc.card}>
-        <Text style={s.titleText}>Library</Text>
-        <Text style={s.subTitleText}>Sub title</Text>
-      </View>
-
       {
         loading &&
         <ActivityIndicator />
       }
 
-      {/* {
-        movies.length > 0 &&
-        <Pressable onPress={() => {
-          navigation.navigate('Movie', { movie: movies[9] })
-        }}>
-          <Animated.Image
-            source={{ uri: movies[9].data[0].poster }}
-            style={{ width: cm * 6, height: cm * 8 }}
-            // sharedTransitionStyle={customTransition}
-            sharedTransitionTag={movies[9].id} />
-        </Pressable>
-      } */}
-
-      <FlatList
-        data={movies}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
-
+      <View style={{ marginHorizontal: cm }}>
+        <FlatList
+          data={movies}
+          renderItem={renderItem}
+          keyExtractor={item => item.imdbID}
+        />
+      </View>
     </SafeAreaView >
   );
 }

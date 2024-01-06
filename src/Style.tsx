@@ -18,7 +18,7 @@ const Sizes = {
 
 const { cm, bcm, scm, mcm, xcm } = Sizes
 
-export { cm, bcm, scm, mcm, xcm, unitSize, height as ScreenHeight, width as ScreenWeight }
+export { cm, bcm, scm, mcm, xcm, unitSize, height as ScreenHeight, width as ScreenWidth }
 
 export function useStyle() {
 
